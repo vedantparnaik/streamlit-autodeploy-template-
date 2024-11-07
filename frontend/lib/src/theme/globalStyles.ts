@@ -293,24 +293,9 @@ export const globalStyles = (theme: EmotionTheme): SerializedStyles => css`
   // Code
 
   pre,
-  code,
-  kbd {
+  code {
     font-size: 1em;
     font-family: ${theme.genericFonts.codeFont};
-  }
-
-  kbd {
-    padding: 0.2rem 0.4rem;
-    color: ${theme.colors.codeTextColor};
-    background-color: ${theme.colors.codeHighlightColor};
-    font-size: ${theme.fontSizes.sm};
-    border-radius: ${theme.radii.md};
-
-    kbd {
-      padding: 0;
-      font-weight: ${theme.fontWeights.bold};
-      font-size: 1em;
-    }
   }
 
   // Images and content
