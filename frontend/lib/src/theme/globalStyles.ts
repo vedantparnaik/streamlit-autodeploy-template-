@@ -305,41 +305,6 @@ export const globalStyles = (theme: EmotionTheme): SerializedStyles => css`
     vertical-align: middle;
   }
 
-  // Tables
-  //
-  // Prevent double borders
-
-  table {
-    caption-side: bottom;
-    border-collapse: collapse;
-  }
-
-  table caption {
-    padding-top: ${theme.spacing.sm};
-    padding-bottom: 0;
-    color: ${theme.colors.gray60};
-    text-align: left;
-  }
-
-  // 1. Matches default <td> alignment by inheriting text-align.
-  // 2. Fix alignment for Safari
-
-  th {
-    text-align: inherit; // 1
-    text-align: -webkit-match-parent; // 2
-  }
-
-  thead,
-  tbody,
-  tfoot,
-  tr,
-  td,
-  th {
-    border-color: inherit;
-    border-style: solid;
-    border-width: 0;
-  }
-
   // Forms
   //
   // 1. Allow labels to use margin for spacing.
