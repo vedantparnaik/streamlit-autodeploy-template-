@@ -93,24 +93,6 @@ export const globalStyles = (theme: EmotionTheme): SerializedStyles => css`
     outline: 0 !important;
   }
 
-  // Content grouping
-  //
-  // 1. Reset Firefox's gray color
-  // 2. Set correct height and prevent the size attribute to make the hr look like an input field
-
-  hr {
-    margin: 2em 0;
-    padding: 0;
-    color: inherit; // 1
-    background-color: transparent;
-    border: none;
-    border-bottom: ${theme.sizes.borderWidth} solid ${theme.colors.borderColor};
-  }
-
-  hr:not([size]) {
-    height: 1px; // 2
-  }
-
   h1 {
     font-family: ${theme.genericFonts.headingFont};
     font-weight: ${theme.fontWeights.extrabold};

@@ -82,10 +82,27 @@ export const StyledStreamlitMarkdown =
           fontSize: theme.fontSizes.md,
         },
 
+        // Handles quotes:
         blockquote: {
           margin: "1em 0 1em 0",
           padding: "0 0 0 1.2em",
           borderLeft: `${theme.sizes.borderWidth} solid ${theme.colors.lightGray}`,
+        },
+
+        // Handles the horizontal divider:
+        hr: {
+          margin: "2em 0",
+          padding: 0,
+          // Reset Firefox's gray color:
+          color: "inherit",
+          backgroundColor: "transparent",
+          border: "none",
+          borderBottom: `${theme.sizes.borderWidth} solid ${theme.colors.borderColor}`,
+          // Set correct height and prevent the size attribute
+          // to make the hr look like an input field:
+          "&:not([size])": {
+            height: theme.sizes.borderWidth,
+          },
         },
 
         table: {
