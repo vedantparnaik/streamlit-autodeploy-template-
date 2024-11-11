@@ -16,7 +16,6 @@
 
 import React from "react"
 
-import "@testing-library/jest-dom"
 import { fireEvent, screen } from "@testing-library/react"
 
 import { render } from "@streamlit/lib/src/test_util"
@@ -25,7 +24,7 @@ import { mockTheme } from "@streamlit/lib/src/mocks/mockTheme"
 
 import { fuzzyFilterSelectOptions, Props, Selectbox } from "./Selectbox"
 
-jest.mock("@streamlit/lib/src/WidgetStateManager")
+vi.mock("@streamlit/lib/src/WidgetStateManager")
 
 const getProps = (props: Partial<Props> = {}): Props => ({
   value: 0,
@@ -33,7 +32,7 @@ const getProps = (props: Partial<Props> = {}): Props => ({
   options: ["a", "b", "c"],
   width: 0,
   disabled: false,
-  onChange: jest.fn(),
+  onChange: vi.fn(),
   theme: mockTheme.emotion,
   placeholder: "Select...",
   ...props,

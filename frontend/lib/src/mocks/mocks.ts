@@ -52,9 +52,9 @@ export function mockEndpoints(
   overrides: Partial<StreamlitEndpoints> = {}
 ): StreamlitEndpoints {
   return {
-    buildComponentURL: jest.fn(),
-    buildMediaURL: jest.fn(),
-    buildFileUploadURL: jest.fn(),
+    buildComponentURL: vi.fn(),
+    buildMediaURL: vi.fn(),
+    buildFileUploadURL: vi.fn(),
     buildAppPageURL: vi
       .fn()
       .mockImplementation(

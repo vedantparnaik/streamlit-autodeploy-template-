@@ -16,7 +16,6 @@
 
 import React from "react"
 
-import "@testing-library/jest-dom"
 import { act, fireEvent, screen } from "@testing-library/react"
 
 import { render } from "@streamlit/lib/src/test_util"
@@ -39,8 +38,8 @@ const getProps = (
   width: 0,
   disabled: false,
   widgetMgr: new WidgetStateManager({
-    sendRerunBackMsg: jest.fn(),
-    formsDataChanged: jest.fn(),
+    sendRerunBackMsg: vi.fn(),
+    formsDataChanged: vi.fn(),
   }),
   ...widgetProps,
 })
@@ -62,7 +61,7 @@ describe("Selectbox widget", () => {
 
   it("sets widget value on mount", () => {
     const props = getProps()
-    jest.spyOn(props.widgetMgr, "setIntValue")
+    vi.spyOn(props.widgetMgr, "setIntValue")
 
     render(<Selectbox {...props} />)
     expect(props.widgetMgr.setIntValue).toHaveBeenCalledWith(
@@ -75,7 +74,7 @@ describe("Selectbox widget", () => {
 
   it("can pass fragmentId to setIntValue", () => {
     const props = getProps(undefined, { fragmentId: "myFragmentId" })
-    jest.spyOn(props.widgetMgr, "setIntValue")
+    vi.spyOn(props.widgetMgr, "setIntValue")
 
     render(<Selectbox {...props} />)
     expect(props.widgetMgr.setIntValue).toHaveBeenCalledWith(
@@ -88,7 +87,7 @@ describe("Selectbox widget", () => {
 
   it("handles the onChange event", () => {
     const props = getProps()
-    jest.spyOn(props.widgetMgr, "setIntValue")
+    vi.spyOn(props.widgetMgr, "setIntValue")
 
     render(<Selectbox {...props} />)
 
@@ -110,7 +109,7 @@ describe("Selectbox widget", () => {
     const props = getProps({ formId: "form" })
     props.widgetMgr.setFormSubmitBehaviors("form", true)
 
-    jest.spyOn(props.widgetMgr, "setIntValue")
+    vi.spyOn(props.widgetMgr, "setIntValue")
 
     render(<Selectbox {...props} />)
 
