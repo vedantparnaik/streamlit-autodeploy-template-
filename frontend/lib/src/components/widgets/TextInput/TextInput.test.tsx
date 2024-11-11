@@ -219,6 +219,59 @@ describe("TextInput widget", () => {
     )
   })
 
+  it("does not sync widget value when value did not change", async () => {
+    const user = userEvent.setup()
+    const props = getProps()
+    jest.spyOn(props.widgetMgr, "setStringValue")
+    render(<TextInput {...props} />)
+    const textInput = screen.getByRole("textbox")
+
+    expect(props.widgetMgr.setStringValue).toHaveBeenCalledTimes(1)
+
+    // userEvent necessary to trigger onKeyPress
+    // fireEvent only dispatches DOM events vs. simulating full interactions
+    await user.click(textInput)
+    await user.keyboard("testing{Enter}")
+
+    expect(props.widgetMgr.setStringValue).toHaveBeenLastCalledWith(
+      props.element,
+      "testing",
+      {
+        fromUi: true,
+      },
+      undefined
+    )
+    expect(props.widgetMgr.setStringValue).toHaveBeenCalledTimes(2)
+
+    // losing focus after value changed triggers a server sync
+    await user.click(textInput)
+    await user.keyboard("moreTesting")
+    // click somewhere to lose focus on the input
+    await user.click(document.body)
+
+    expect(props.widgetMgr.setStringValue).toHaveBeenLastCalledWith(
+      props.element,
+      "testingmoreTesting",
+      {
+        fromUi: true,
+      },
+      undefined
+    )
+    expect(props.widgetMgr.setStringValue).toHaveBeenCalledTimes(3)
+
+    // focusing and clicking enter again without changing the value does
+    // not trigger a server-sync and, thus, no re-run
+    await user.click(textInput)
+    await user.keyboard("{enter}")
+    expect(props.widgetMgr.setStringValue).toHaveBeenCalledTimes(3)
+
+    // focusing and losing focus without changing the value does
+    // not trigger a server-sync and, thus, no re-run
+    await user.click(textInput)
+    await user.click(document.body)
+    expect(props.widgetMgr.setStringValue).toHaveBeenCalledTimes(3)
+  })
+
   it("doesn't set widget value when not dirty", () => {
     const props = getProps()
     jest.spyOn(props.widgetMgr, "setStringValue")
