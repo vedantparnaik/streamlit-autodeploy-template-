@@ -48,6 +48,7 @@ if TYPE_CHECKING:
     from plotly.graph_objs import Figure
     from pydeck import Deck
 
+    from streamlit.delta_generator import DeltaGenerator
 
 T = TypeVar("T")
 
@@ -265,6 +266,14 @@ def _is_probably_plotly_dict(obj: object) -> TypeGuard[dict[str, Any]]:
     return False
 
 
+def is_delta_generator(obj: object) -> TypeGuard[DeltaGenerator]:
+    """True if input looks like a DeltaGenerator."""
+
+    # We are using a string here to avoid circular import warnings
+    # when importing DeltaGenerator.
+    return is_type(obj, "streamlit.delta_generator.DeltaGenerator")
+
+
 def is_function(x: object) -> TypeGuard[types.FunctionType]:
     """Return True if x is a function."""
     return isinstance(x, types.FunctionType)
@@ -272,7 +281,13 @@ def is_function(x: object) -> TypeGuard[types.FunctionType]:
 
 def has_callable_attr(obj: object, name: str) -> bool:
     """True if obj has the specified attribute that is callable."""
-    return hasattr(obj, name) and callable(getattr(obj, name))
+    return (
+        hasattr(obj, name)
+        and callable(getattr(obj, name))
+        # DeltaGenerator will return a callable wrapper for any method name,
+        # even if it doesn't exist.
+        and not is_delta_generator(obj)
+    )
 
 
 def is_namedtuple(x: object) -> TypeGuard[NamedTuple]:
