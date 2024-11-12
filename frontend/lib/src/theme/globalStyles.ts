@@ -199,14 +199,6 @@ export const globalStyles = (theme: EmotionTheme): SerializedStyles => css`
     }
   }
 
-  // Code
-
-  pre,
-  code {
-    font-size: 1em;
-    font-family: ${theme.genericFonts.codeFont};
-  }
-
   // Images and content
 
   img,
