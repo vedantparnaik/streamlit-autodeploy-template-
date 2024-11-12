@@ -20,7 +20,9 @@ import { fireEvent, screen } from "@testing-library/react"
 
 import { render } from "@streamlit/lib/src/test_util"
 import { LabelVisibilityOptions } from "@streamlit/lib/src/util/utils"
+import * as Utils from "@streamlit/lib/src/theme/utils"
 import { mockTheme } from "@streamlit/lib/src/mocks/mockTheme"
+import { mockConvertRemToPx } from "@streamlit/lib/src/mocks/mocks"
 
 import { fuzzyFilterSelectOptions, Props, Selectbox } from "./Selectbox"
 
@@ -41,7 +43,12 @@ const getProps = (props: Partial<Props> = {}): Props => ({
 describe("Selectbox widget", () => {
   let props: Props
 
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
   beforeEach(() => {
+    vi.spyOn(Utils, "convertRemToPx").mockImplementation(mockConvertRemToPx)
     props = getProps()
   })
 

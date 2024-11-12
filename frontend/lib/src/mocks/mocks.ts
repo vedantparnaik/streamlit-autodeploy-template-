@@ -74,3 +74,7 @@ export function mockEndpoints(
     ...overrides,
   }
 }
+
+export function mockConvertRemToPx(scssVar: string): number {
+  return Number(scssVar.replace("rem", "")) * 16
+}
