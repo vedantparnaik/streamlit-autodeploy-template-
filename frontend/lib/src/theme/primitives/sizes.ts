@@ -46,4 +46,5 @@ export const sizes = {
   // Used for the clear icon used by some Input elements
   clearIconSize: "1.5em",
   numberInputControlsWidth: "2rem",
+  appDefaultBottomPadding: "3.5rem",
 }
