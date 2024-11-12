@@ -21,19 +21,19 @@ import useUpdateUiValue from "./useUpdateUiValue"
 
 describe("useUpdateUiValue", () => {
   it("should update ui value if values are different and ui value is not dirty", async () => {
-    const callback = jest.fn()
+    const callback = vi.fn()
     renderHook(() => useUpdateUiValue(4, 2, callback, false))
     await waitFor(() => expect(callback).toHaveBeenCalledWith(4))
   })
 
   it("shoud not update ui value if values are different and ui value is dirty", async () => {
-    const callback = jest.fn()
+    const callback = vi.fn()
     renderHook(() => useUpdateUiValue(4, 2, callback, true))
     await waitFor(() => expect(callback).not.toHaveBeenCalled())
   })
 
   it("shoud not update ui value if values are same", async () => {
-    const callback = jest.fn()
+    const callback = vi.fn()
     renderHook(() => useUpdateUiValue(4, 4, callback, false))
     await waitFor(() => expect(callback).not.toHaveBeenCalled())
   })
