@@ -111,21 +111,6 @@ export const globalStyles = (theme: EmotionTheme): SerializedStyles => css`
     margin-bottom: 0;
   }
 
-  // Strong
-  //
-  // Add the correct font weight in Chrome, Edge, and Safari
-
-  b,
-  strong {
-    font-weight: ${theme.fontWeights.bold};
-  }
-
-  // Small
-
-  small {
-    font-size: ${theme.fontSizes.sm};
-  }
-
   // And undo these styles for placeholder links/named anchors (without href).
   // It would be more straightforward to just use a[href] in previous block, but that
   // causes specificity issues in many other styles that are too complex to fix.
