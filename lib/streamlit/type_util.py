@@ -63,6 +63,10 @@ class SupportsStr(Protocol):
     def __str__(self) -> str: ...
 
 
+class SupportsReprHtml(Protocol):
+    def _repr_html_(self) -> str: ...
+
+
 class CustomDict(Protocol):
     """Protocol for Streamlit native custom dictionaries (e.g. session state, secrets, query params).
     that can be converted to a dict.
