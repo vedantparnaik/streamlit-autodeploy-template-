@@ -341,6 +341,8 @@ def test_in_form_selection_and_session_state(app: Page):
 
 def test_multi_row_and_multi_column_selection_with_callback(app: Page):
     canvas = _get_callback_df(app)
+    expect_canvas_to_be_visible(canvas)
+    canvas.scroll_into_view_if_needed()
     _select_some_rows_and_columns(app, canvas)
 
     expect_prefixed_markdown(
