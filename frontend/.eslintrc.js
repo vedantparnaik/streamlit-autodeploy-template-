@@ -219,6 +219,17 @@ module.exports = {
     "react-compiler/react-compiler": "error",
     "streamlit-custom/no-hardcoded-theme-values": "error",
     "streamlit-custom/use-strict-null-equality-checks": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        paths: [
+          {
+            name: "timezone-mock",
+            message: "Please use the withTimezones test harness instead",
+          },
+        ],
+      },
+    ],
   },
   overrides: [
     {
