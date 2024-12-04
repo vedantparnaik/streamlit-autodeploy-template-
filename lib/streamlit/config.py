@@ -458,18 +458,31 @@ _create_option(
     "client.showErrorDetails",
     description="""
         Controls whether uncaught app exceptions and deprecation warnings
-        are displayed in the browser. By default, this is set to True and
-        Streamlit displays app exceptions and associated tracebacks, and
-        deprecation warnings, in the browser.
+        are displayed in the browser. This can be one of the following:
 
-        If set to False, deprecation warnings and full exception messages
-        will print to the console only. Exceptions will still display in the
-        browser with a generic error message. For now, the exception type and
-        traceback show in the browser also, but they will be removed in the
-        future.
+        - "full"       : In the browser, Streamlit displays app deprecation
+                         warnings and exceptions, including exception types,
+                         exception messages, and associated tracebacks.
+        - "stacktrace" : In the browser, Streamlit displays exceptions,
+                         including exception types, generic exception messages,
+                         and associated tracebacks. Deprecation warnings and
+                         full exception messages will only print to the
+                         console.
+        - "type"       : In the browser, Streamlit displays exception types and
+                         generic exception messages. Deprecation warnings, full
+                         exception messages, and associated tracebacks only
+                         print to the console.
+        - "none"       : In the browser, Streamlit displays generic exception
+                         messages. Deprecation warnings, full exception
+                         messages, associated tracebacks, and exception types
+                         will only print to the console.
+        - True         : This is deprecated. Streamlit displays "full"
+                         error details.
+        - False        : This is deprecated. Streamlit displays "stacktrace"
+                         error details.
     """,
-    default_val=True,
-    type_=bool,
+    default_val="full",
+    type_=str,
     scriptable=True,
 )
 
