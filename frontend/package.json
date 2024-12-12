@@ -10,6 +10,7 @@
     "postinstall": "patch-package",
     "start": "yarn workspace @streamlit/app start",
     "build": "yarn workspace @streamlit/app build",
+    "buildWithProfiler": "yarn workspace @streamlit/app buildWithProfiler",
     "buildLib": "yarn workspace @streamlit/lib build",
     "buildLibProd": "yarn workspace @streamlit/lib build:prod",
     "buildApp": "yarn workspace @streamlit/app build",
