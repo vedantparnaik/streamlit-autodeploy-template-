@@ -23,8 +23,9 @@ import path from "path"
 
 const BASE = "./"
 const HASH = process.env.OMIT_HASH_FROM_MAIN_FILES ? "" : ".[hash]"
-const BUILD_AS_FAST_AS_POSSIBLE =
-  process.env.BUILD_AS_FAST_AS_POSSIBLE || false
+// We do not explicitly set the DEV_BUILD in any of our processes
+// This is a convenience for developers for debugging purposes
+const DEV_BUILD = process.env.DEV_BUILD || false
 // https://vitejs.dev/config/
 export default defineConfig({
   base: BASE,
@@ -52,7 +53,7 @@ export default defineConfig({
   build: {
     outDir: "build",
     assetsDir: "static",
-    sourcemap: !BUILD_AS_FAST_AS_POSSIBLE,
+    sourcemap: DEV_BUILD,
     rollupOptions: {
       output: {
         // Customize the chunk file naming pattern to match static/js/[name].[hash].js
