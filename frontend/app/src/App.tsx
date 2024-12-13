@@ -1980,7 +1980,6 @@ export class App extends PureComponent<Props, State> {
 
               <AppView
                 endpoints={this.endpoints}
-                sessionInfo={this.sessionInfo}
                 sendMessageToHost={this.hostCommunicationMgr.sendMessageToHost}
                 elements={elements}
                 scriptRunId={scriptRunId}
