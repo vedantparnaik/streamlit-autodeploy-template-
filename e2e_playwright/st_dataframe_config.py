@@ -536,16 +536,20 @@ st.dataframe(
     )
 )
 
+df = pd.DataFrame(
+    np.random.randn(5, 25),
+    columns=("col_%d" % i for i in range(25)),
+)
 st.header("Pinned columns:")
 st.dataframe(
-    pd.DataFrame(
-        np.random.randn(5, 25),
-        columns=("col_%d" % i for i in range(25)),
-    ),
+    df,
     column_config={
         "_index": st.column_config.Column(pinned=False),
         "col_2": st.column_config.Column(pinned=True),
         "col_4": st.column_config.Column(pinned=True),
         "col_16": st.column_config.Column(pinned=True),
     },
+    # Use reversed column order to test that pinned columns
+    # use the column order as well.
+    column_order=reversed(df.columns.tolist()),
 )
