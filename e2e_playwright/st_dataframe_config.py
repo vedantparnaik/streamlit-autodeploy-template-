@@ -521,7 +521,7 @@ st.subheader("Hierarchical headers")
 
 st.dataframe(
     pd.DataFrame(
-        np.random.randn(3, 5),
+        np.random.randn(3, 6),
         index=["A", "B", "C"],
         columns=pd.MultiIndex.from_tuples(
             [
@@ -530,6 +530,7 @@ st.dataframe(
                 ("e", "f", "c"),
                 ("g", "h", "d"),
                 ("", "h", "i"),
+                ("j", "", ""),
             ],
             names=["first", "second", "third"],
         ),
